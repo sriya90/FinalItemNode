@@ -1,0 +1,25 @@
+h2
+	span.label.label-info {{months[currentMonth-1]}} {{currentYear}}
+
+nav
+	ul.pager
+		li
+			a(href='/month/{{(currentMonth==1)?currentYear-1:currentYear}}/{{((currentMonth | num)+10)%12 +1}}')
+				span(aria-hidden="true")
+					&larr; {{months[((currentMonth | num) +10)%12]}}
+		li
+			a(href='/month/{{(currentMonth==12)?((currentYear | num) | num)+1:currentYear}}/{{currentMonth%12 + 1}}')
+				span(aria-hidden="true")
+					{{months[(currentMonth)%12]}} &rarr;
+
+div.dayName MONDAY
+div.dayName TUESDAY
+div.dayName WEDNESDAY
+div.dayName THURSDAY
+div.dayName FRIDAY
+div.dayName SATURDAY
+div.dayName SUNDAY
+div.calendar.monthView
+	div(ng-repeat='i in getNumber(firstDay-1) track by $index').prevNextMonth
+	div(ng-repeat='i in getNumber(totalDays) track by $index', title='Click to add new event').currentMonth
+		<day-of-month date='{{yearMonth}}{{twoDigit(1+$index)}}'></day-of-month>
