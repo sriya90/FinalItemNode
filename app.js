@@ -18,7 +18,7 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-app.set('port', (process.env.PORT || 5000));
+app.set('port', (process.env.PORT));
 
 
 app.use(logger('dev'));
@@ -68,6 +68,6 @@ app.use(function(err, req, res, next) {
   });
 });
 
-app.listen(process.env.PORT || 5000);
+app.listen(process.env.PORT);
 
 module.exports = app;
