@@ -1,5 +1,5 @@
 # FinalProject
-Group 3: Pablo Villagomez, Alexis Milon, Sriya Sahasranam
+Group 3: Sriya Sahasranam
 
 
 ### Build a web application of your choosing with a team.
