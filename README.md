@@ -1,8 +1,9 @@
 # FinalProject
 Group 3: Sriya Sahasranam
 
-Heroku Link for the Application : https://afternoon-citadel-96395.herokuapp.com/month/2019/1
+Heroku Link for the Application (WITH MEAN STACK) : https://afternoon-citadel-96395.herokuapp.com/month/2019/1
 
+Heroku Link for the Application (WITH PUG):          https://morning-dawn-43756.herokuapp.com/
 
 Mcloud Db link : mongodb://sriya:Asdf1234@ds137862.mlab.com:37862/events
 
