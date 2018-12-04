@@ -7,7 +7,8 @@ Heroku Link for the Application (WITH PUG):          https://morning-dawn-43756.
 
 Mcloud Db link : mongodb://sriya:Asdf1234@ds137862.mlab.com:37862/events
 
-Youtube Demo Link : https://youtu.be/m6uNEIe3Gsc
+Youtube Demo Link : https://youtu.be/GFrKmvNp7bk
+[Note demo has both versions of the project]
 
 ### Build a web application of your choosing with a team.
 
