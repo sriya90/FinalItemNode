@@ -1,25 +1,25 @@
 extends layout.pug
 block content
   h1.mt-5= title
-    a.btn.btn-primary(href='./event/new' style='margin-left: 25px') New Event
+    a(style="float: right").btn.btn-primary(href='./event/new') New Event
   table.table
-    thead
+    thead(style="text-align:center")
       tr
         th(scope='col') Event Title
         th(scope='col') Description
         th(scope='col') Location
-        th(scope='col') StartDate
+        th(scope='col') Start Date
         th(scope='col') Update
         th(scope='col') Delete
 
-    tbody
+    tbody(style="text-align:center")
         each val in eventsOfTheDay
-            tr
+            tr(style="border-bottom: solid gray 0.1em")
                 td=  val.title
                 td=  val.description
                 td=  val.location
-                td=  val.startDate
+                td(style="background-color: #9de67b; color: white; font-weight: bold; font-size: 1.5em")=  val.startDate
                 td
-                    a.btn.btn-primary(href='/events/' + val._id + '/update' ) Update
+                    a(style="background-color: white; color: black").btn.btn-primary(href='/events/' + val._id + '/update' ) Update
                 td
-                    a.btn.btn-danger(href='/events/' + val._id + '/delete' ) Delete
+                    a(style="background-color: red").btn.btn-danger(href='/events/' + val._id + '/delete' ) Delete
