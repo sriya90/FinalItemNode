@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = process.env.PORT|| 8000 
+const port = process.env.PORT|| 8000
 
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://sriya:Asdf1234@ds137862.mlab.com:37862/events');
@@ -17,7 +17,7 @@ app.set('view engine', 'pug')
 app.set('views', __dirname + '/views');
 var eventSchema = new mongoose.Schema({
   startDate:     { type: String,  required: true },
-  name:      { type: String,  required: true },
+  title:      { type: String,  required: true },
   description :  { type: String, required: true },
   location :  { type: String, required: true }
 });
@@ -41,16 +41,16 @@ db.once('open', function() {
 
 
      var hey = createCal(d.getYear(), d.getMonth());
-      console.log("BBefore sending");
-     
+      console.log("Before sending");
+
 res.render('index', { days:d.getYear(),startDay:d.getMonth(),calArray:hey ,currentMonthYear:monthNames[d.getMonth()]+' '+currentYear});
-    
+
 
 });
-      
-     
-    
- 
+
+
+
+
 function queryCollection(collection, callback){
     console.log(collection);
     console.log(currentYear);
@@ -62,29 +62,29 @@ function queryCollection(collection, callback){
                        events.push(items);
                         callback();
                     });
-	
-}
- 
 
-    
+}
+
+
+
       app.get('/nextMonth', (req, res) => {
-          
+
           if(currentMonth==11)
               {
                   currentMonth=0;
-                  currentYear++; 
+                  currentYear++;
               }
           else
               currentMonth++;
-             
+
      var hey = createCal(currentYear, currentMonth);
-    
-   
-         
+
+
+
     res.render('index', { calArray:hey ,currentMonthYear:monthNames[currentMonth]+' '+currentYear})
   });
-    
-    
+
+
       app.get('/prevMonth', (req, res) => {
 
           if(currentMonth==0)
@@ -94,19 +94,19 @@ function queryCollection(collection, callback){
           }else
               currentMonth--;
      var hey = createCal(currentYear, currentMonth);
-    
-       
+
+
 
     res.render('index', { calArray:hey ,currentMonthYear:monthNames[currentMonth]+' '+currentYear})
   });
- 
-    
+
+
 function createCal(year, month) {
-		var day = 1, i, j, haveDays = true, 
+		var day = 1, i, j, haveDays = true,
 				startDay = new Date(year, month, day).getDay(),
 				daysInMonth = [31, (((year%4===0)&&(year%100!==0))||(year%400===0)) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ],
 				calendar = [];
-               
+
 console.log(year)
     console.log(month)
    console.log( daysInMonth[month])
@@ -117,14 +117,14 @@ console.log(year)
 				if (i === 0) {
 					if (j === startDay) {
 						calendar[i][j] = day++;
-                       
-                            
+
+
 						startDay++;
 					}
 				} else if ( day <= daysInMonth[month]) {
 					calendar[i][j] = day++;
-                  
-            
+
+
 				} else {
 					calendar[i][j] = "";
 					haveDays = false;
@@ -134,13 +134,13 @@ console.log(year)
 				}
 			}
 			i++;
-		}	
-		
-		
+		}
+
+
 
 		return calendar;
 	}
-    
+
     function findEvents()
     {
         var meevents=[];
@@ -153,13 +153,13 @@ console.log(year)
                 currentDate='1-11-2018';
                     db.collection('events').find({startDate: currentDate}).toArray( function (err, items) {
                         meevents[i]=items;
-                 
+
                     });
-              
+
             }
         console.log(meevents);
         return meevents;
-       
+
     }
   app.get('*/:id/event/new', (req, res) => {
     var dStart=req.params.id+'-'+monthNames[currentMonth]+'-'+currentYear;
@@ -171,73 +171,73 @@ console.log(year)
     let id = req.params.id
     curId =  req.params.id
        currentDate=id+'-'+monthNames[currentMonth]+'-'+currentYear;
+       var startDate =currentDate;
         db.collection('events').find({startDate: currentDate.toString()}).toArray( function (err, items) {
         console.log(items);
           res.render('list-detail', { title: "Daily List of Events for "+currentDate,eventsOfTheDay:items })
     });
 
   });
-    
-    
-      app.get('*/:id/event/new', (req, res) => {
+
+
+    app.get('*/:id/event/new', (req, res) => {
     var dStart=req.params.id+'-'+monthNames[currentMonth]+'-'+currentYear;
       console.log(dStart);
     res.render('event-form', {title: "New Event For "+dStart, event:{} })
   });
 
+//Weekly-view is not working properly
     app.get('/weeklyEvent/:id', (req, res) => {
     let id = req.params.id
     curId =  req.params.id
-        var datesused = new Array();
-        
-       currentDate=id+'-'+monthNames[currentMonth]+'-'+currentYear;
-        var startDate =currentDate;
-        dates = currentDate;
+    var datesused = new Array();
+
+      currentDate=id+'-'+monthNames[currentMonth]+'-'+currentYear;
+      var startDate =currentDate;
         for(var i=1;i<=6;i++)
             {
-               
-                currentDate=id+'-'+monthNames[currentMonth]+'-'+currentYear;  
-                  console.log(currentDate)
-                datesused.push(currentDate.toString());
-                
-                id++;
+              currentDate=id+'-'+monthNames[currentMonth]+'-'+currentYear;
+              console.log(currentDate)
+              datesused.push(currentDate.toString());
+
+              id++;
             }
         var endDate = currentDate;
-      
+
         db.collection('events').find({startDate:{ $in: datesused}}).toArray( function (err, items) {
         console.log(items);
           res.render('list-detail', { title: "Weekly List of Events for "+startDate+" "+currentDate,eventsOfTheDay:items })
     });
 
   });
-    
-  app.get('/books/:id/update', (req, res) => {
+
+  app.get('/events/:id/update', (req, res) => {
     let id = ObjectID.createFromHexString(req.params.id)
-    
-    eventsDB.findById(id, function(err, book) {
+
+    eventsDB.findById(id, function(err, event) {
       if (err) {
         console.log(err)
         res.render('error', {})
       } else {
-        if (book === null) {
+        if (event === null) {
           res.render('error', { message: "Not found" })
         } else {
-          res.render('event-form', { title: "Update Book", book: book })
+          res.render('event-form', { title: "Update Event", event: event })
         }
       }
     });
   });
-     
+
   app.post('*/:id/event/new', function(req, res, next) {
       req.body.startDate=currentDate;
-    let newBookSave = new eventsDB(req.body);
-      newBookSave.startDate=currentDate;
+    let newEventSave = new eventsDB(req.body);
+      newEventSave.startDate=currentDate;
       console.log(currentDate);
-      console.log(newBookSave);
-    newBookSave.save(function(err, savedBook){
+      console.log(newEventSave);
+    newEventSave.save(function(err, savedEvent){
       if (err) {
         console.log(err)
-        res.render('event-form', { event: newBookSave, error: err })
+        res.render('event-form', { event: newEventSave, error: err })
       } else {
         res.redirect('/calEvent/' + curId+'/getting');
       }
@@ -255,7 +255,7 @@ console.log(year)
         if (events === null) {
           res.render('error', { message: "Not found" })
         } else {
-          res.render('event-form', {  title: "Update Event",event: events})
+          res.render('event-form', {  title: "Update Event", event: event })
         }
       }
     });
@@ -281,52 +281,52 @@ console.log(year)
     });
   });
 
-  app.post('/api/books', (req, res) => {
+  app.post('/api/events', (req, res) => {
     console.log(req.body)
-    let newBook = new Book(req.body)
+    let newEvent = new Event(req.body)
 
-    eventsDB.save(function (err, savedReview) {
+    eventsDB.save(function (err, savedSchedule) {
       if (err) {
         console.log(err)
         res.status(500).send("There was an internal error")
       } else {
-        res.send(savedReview)
+        res.send(savedSchedule)
       }
     });
   });
 
-  app.get('/api/books', (req, res) => {
-    Review.find({}, function(err, reviews) {
+  app.get('/api/events', (req, res) => {
+    Schedule.find({}, function(err, schedules) {
       if (err) {
         console.log(err)
         res.status(500).send("Internal server error")
       } else {
-        res.send(reviews)
+        res.send(schedules)
       }
     });
   });
 
-  app.get('/api/books/:id', (req, res) => {
+  app.get('/api/events/:id', (req, res) => {
     let id = ObjectID.createFromHexString(req.params.id)
 
-    Review.findById(id, function(err, review) {
+    Schedule.findById(id, function(err, schedule) {
       if (err) {
         console.log(err)
         res.status(500).send("Internal server error")
       } else {
-        if (review === null) {
+        if (schedule === null) {
           res.status(404).send("Not found")
         } else {
-          res.send(review)
+          res.send(schedule)
         }
       }
     });
   });
 
-  app.put('/api/books/:id', (req, res) => {
+  app.put('/api/event/:id', (req, res) => {
     let id = ObjectID.createFromHexString(req.params.id)
 
-    Review.updateOne({"_id": id}, { $set: req.body }, function(err, details) {
+    Schedule.updateOne({"_id": id}, { $set: req.body }, function(err, details) {
       if (err) {
         console.log(err)
         res.status(500).send("Internal server error")
@@ -336,10 +336,10 @@ console.log(year)
     });
   });
 
-  app.delete('/api/books/:id', (req, res) => {
+  app.delete('/api/events/:id', (req, res) => {
     let id = ObjectID.createFromHexString(req.params.id)
 
-    Review.deleteOne({"_id": id}, function(err) {
+    Schedule.deleteOne({"_id": id}, function(err) {
       if (err) {
         console.log(err)
         res.status(500).send("Internal server error")
