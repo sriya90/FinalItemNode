@@ -1,5 +1,0 @@
-{
-  "name": "MEAN Calendar",
-  "description": "A calendar using Mongo DB, Express, AngularJS and Node.js",
-  "keywords": ["node", "express", "angular", "mongo", "calendar"],
-}
