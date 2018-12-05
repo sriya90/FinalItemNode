@@ -11,16 +11,15 @@ block content
         th(scope='col') StartDate
         th(scope='col') Update
         th(scope='col') Delete
-   
+
     tbody
         each val in eventsOfTheDay
             tr
-                td=  val.name
+                td=  val.title
                 td=  val.description
-                td=  val.location 
-                td=  val.startDate 
-                td  
+                td=  val.location
+                td=  val.startDate
+                td
                     a.btn.btn-primary(href='/events/' + val._id + '/update' ) Update
-                td  
+                td
                     a.btn.btn-danger(href='/events/' + val._id + '/delete' ) Delete
-        
