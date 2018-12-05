@@ -2,11 +2,11 @@ extends layout.pug
 
 block content
 
-  h1.mt-5=currentMonthYear
-        a.btn.btn-primary(href='/prevMonth'  ) < Previous Month
-        a.btn.btn-primary(href='/nextMonth' )  > Next Month
+  h1(style="text-align: center").mt-5=currentMonthYear
+        a(style="margin-right: 1em; margin-left:1em; float: left").btn.btn-primary(href='/prevMonth'  ) < Previous Month
+        a(style="float: right").btn.btn-primary(href='/nextMonth' )  > Next Month
   table.table
-    thead
+    thead(style="text-align: center")
       tr
         th(scope='col') Sunday
         th(scope='col') Monday
@@ -22,5 +22,5 @@ block content
          each it in item
             td= it
                 if(it)
-                    a.btn.btn-primary(href='/calEvent/' + it + '/getting' ) View Day Details
+                    a(style="background-color: green; padding: 0.5em;").btn.btn-primary(href='/calEvent/' + it + '/getting' ) View Day
                     a.btn.btn-primary(href='/weeklyEvent/' + it) View Week
