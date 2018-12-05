@@ -1,8 +1,8 @@
 extends layout.pug
 
 block content
-  
-  h1.mt-5=currentMonthYear 
+
+  h1.mt-5=currentMonthYear
         a.btn.btn-primary(href='/prevMonth'  ) < Previous Month
         a.btn.btn-primary(href='/nextMonth' )  > Next Month
   table.table
@@ -10,19 +10,17 @@ block content
       tr
         th(scope='col') Sunday
         th(scope='col') Monday
-        th(scope='col') Teusday
+        th(scope='col') Tuesday
         th(scope='col') Wednesday
         th(scope='col') Thursday
         th(scope='col') Friday
         th(scope='col') Saturday
-       
+
     tbody
      each item in calArray
         tr
          each it in item
             td= it
                 if(it)
-                    a.btn.btn-primary(href='/calEvent/' + it+ '/getting' ) View Day Details
+                    a.btn.btn-primary(href='/calEvent/' + it + '/getting' ) View Day Details
                     a.btn.btn-primary(href='/weeklyEvent/' + it) View Week
-  		                 
-                    
