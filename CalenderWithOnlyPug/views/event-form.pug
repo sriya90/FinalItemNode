@@ -4,13 +4,13 @@ block content
   h1.mt-5= title
   form(method="POST")
     .form-group
-      label(for='name') Event Namesdfsf
-      input#author.form-control(type='text', placeholder='Enter name', name="name", value=event.name)
+      label(for='title') Event Title
+      input#title.form-control(type='text', placeholder='Enter title of event', name="title", value=event.title)
     .form-group
       label(for='description')  Event Description
-      input#name.form-control(type='text', placeholder='Enter title', name="description", value=event.description)
+      input#description.form-control(type='text', placeholder='Enter note', name="description", value=event.description)
     .form-group
       label(for='location') Event Location
-      input#numPages.form-control(type='text', placeholder='Enter Number of Pages', name="location", value=event.location)
-      
+      input#location.form-control(type='text', placeholder='Enter location of event', name="location", value=event.location)
+
     button.btn.btn-primary(type='submit') Submit
