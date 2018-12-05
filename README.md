@@ -7,14 +7,11 @@ Mcloud Db link : mongodb://sriya:Asdf1234@ds137862.mlab.com:37862/events
 
 Source Code :https://github.com/sriya90/FinalItemNode/tree/master/CalenderWithOnlyPug
 
-Youtube Demo Link : https://youtu.be/GFrKmvNp7bk
+Youtube Demo Link : https://youtu.be/6LvTcliHhb0
+
 [Note demo has both versions of the project]
 
-### Build a web application of your choosing with a team.
-
-Come up with a proposal for an application and send it to me for approval
-
-
+Application deployed in heroku and using mongo cloud 
 **Calendar Application**
 
 
