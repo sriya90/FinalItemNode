@@ -1,18 +1,19 @@
 {
-  "name": "reviewr",
+  "name": "events",
   "version": "0.1.0",
-  "description": "A movie reviews website",
+  "description": "A calendar application that schedules events",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "movie",
-    "review",
-    "website"
+    "calendar",
+    "events",
+    "website",
+    "scheduler"
   ],
-  "author": "Benjamin Zumhagen",
-  "license": "MIT",
+  "author": "Group 3",
+  "license": "ISC",
   "dependencies": {
     "express": "^4.16.4",
     "mongodb": "^3.1.8",
