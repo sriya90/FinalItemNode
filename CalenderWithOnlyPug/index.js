@@ -178,6 +178,39 @@ console.log(year)
 
   });
     
+    
+      app.get('*/:id/event/new', (req, res) => {
+    var dStart=req.params.id+'-'+monthNames[currentMonth]+'-'+currentYear;
+      console.log(dStart);
+    res.render('event-form', {title: "New Event For "+dStart, event:{} })
+  });
+
+    app.get('/weeklyEvent/:id', (req, res) => {
+    let id = req.params.id
+    curId =  req.params.id
+        var datesused = new Array();
+        
+       currentDate=id+'-'+monthNames[currentMonth]+'-'+currentYear;
+        var startDate =currentDate;
+        dates = currentDate;
+        for(var i=1;i<=6;i++)
+            {
+               
+                currentDate=id+'-'+monthNames[currentMonth]+'-'+currentYear;  
+                  console.log(currentDate)
+                datesused.push(currentDate.toString());
+                
+                id++;
+            }
+        var endDate = currentDate;
+      
+        db.collection('events').find({startDate:{ $in: datesused}}).toArray( function (err, items) {
+        console.log(items);
+          res.render('list-detail', { title: "Weekly List of Events for "+startDate+" "+currentDate,eventsOfTheDay:items })
+    });
+
+  });
+    
   app.get('/books/:id/update', (req, res) => {
     let id = ObjectID.createFromHexString(req.params.id)
     

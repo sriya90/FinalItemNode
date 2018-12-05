@@ -8,8 +8,9 @@ block content
         th(scope='col') Event Title
         th(scope='col') Description
         th(scope='col') Location
-        th(scope='col') Location
-        th(scope='col') Location
+        th(scope='col') StartDate
+        th(scope='col') Update
+        th(scope='col') Delete
    
     tbody
         each val in eventsOfTheDay
@@ -17,6 +18,7 @@ block content
                 td=  val.name
                 td=  val.description
                 td=  val.location 
+                td=  val.startDate 
                 td  
                     a.btn.btn-primary(href='/events/' + val._id + '/update' ) Update
                 td  
