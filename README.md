@@ -9,7 +9,7 @@ Source Code :https://github.com/sriya90/FinalItemNode/tree/master/CalenderWithOn
 
 Youtube Demo Link : https://youtu.be/6LvTcliHhb0
 
-[Note demo has both versions of the project]
+
 
 Application deployed in heroku and using mongo cloud
 **Calendar Application**
