@@ -1,5 +1,5 @@
 # FinalProject
-Group 3: Sriya Sahasranam
+Group 3: Sriya Sahasranam Alexis Pablao
 
 Heroku Link for the Application (WITH PUG):          https://morning-dawn-43756.herokuapp.com/
 
