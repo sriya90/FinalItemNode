@@ -1,9 +1,12 @@
 # FinalProject
-Group 3: Sriya Sahasranam, Alexis Milon, & Pablo Villagomez
+
+Group 3: 
+Sriya Sahasranam, Alexis Milon, & Pablo Villagomez
+
 
 Heroku Link for the Application (WITH PUG):          https://morning-dawn-43756.herokuapp.com/
 
-Mcloud Db link : mongodb://sriya:Asdf1234@ds137862.mlab.com:37862/events
+Mcloud Db link : mongodb://sriya:Asdf1234@ds137862.mlab.com:37862/events 
 
 Source Code :https://github.com/sriya90/FinalItemNode/tree/master/CalenderWithOnlyPug
 
